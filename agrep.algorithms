@@ -1,0 +1,48 @@
+/* Copyright (c) 1994 Sun Wu, Udi Manber, Burra Gopal.  All Rights Reserved. */
+The implementation of agrep includes the following algorithms.
+Except for exact matching of simple patterns, for which we use 
+a simple variation of the Boyer-Moore algorithm, 
+all the algorithms (listed below) were designed by Sun Wu and Udi Manber.
+
+1. bitap:  The most general algorithm inside agrep.
+	   It supports many extensions such as approximate regular expression 
+	   pattern matching, non-uniform costs, simultaneous matching of 
+	   multiple patterns, mixed exact/approximate matching, etc.
+	   The algorithm is described in agrep.ps.1.
+
+2. mgrep:  A sub-linear expect-time algorithm for matching a set of patterns.
+	   It assumes that the set of patterns contains k patterns, and that
+	   the shortest pattern is of size m.
+	   See agrep.ps.2 for a brief description of the algorithm.
+
+3. amonkey: a Boyer-Moore style algorithm for approximate pattern matching.
+	   let b = log_c (2*m), where c is the size of alphabet set.
+	   In the preprocessing, a table is built to determine whether
+	   a given substring of size b is in the pattern.
+	   Suppose we are looking for matches with at most k errors.
+	   The search is done in two passes.
+	   In the first pass (the filtering pass), the areas in the text
+	   that have a possibility to contain the matches are marked.
+	   The second pass finds the matches in those marked areas.
+	   The search in the first pass is done in the following way.
+	   Suppose the end position of the pattern is currently aligned with 
+	   position tx in the text.
+	   The algorithm scans backward from tx until either (k+1) blocks
+	   that do not occur in the pattern have been scanned, or
+	   the scan has passed position (tx-m+k).
+	   In the former case, pattern is shifted forward to align
+	   the beginning position of the pattern with one character after
+	   the position in the text where the scan was stopped.
+	   In the latter case, we marked tx-m to tx+m as a candidate area.
+
+4. mmonkey: Combining the mgrep algorithm with a partition technique, we
+	   have an algorithm with the same time complexity as amonkey.
+	   For ASCII text and pattern, this algorithm is faster than amonkey.
+	   The principle of the partition technique is as follows.
+	   Let A and B be two strings of size m. 
+	   If we partition A into (k+1) blocks, then the distance between 
+	   A and B is > k if none of the blocks of A occur in B. 
+	   This implies that to match A with no more than k errors, 
+	   B has to contain a substring that matches exactly one block of A.
+	   A brief description can be found in agrep.ps.2.
+

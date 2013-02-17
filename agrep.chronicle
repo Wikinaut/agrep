@@ -1,0 +1,172 @@
+/* Copyright (c) 1994 Sun Wu, Udi Manber, Burra Gopal.  All Rights Reserved. */
+Started in Feb 1991.
+This chronicle briefly describes the progress of agrep.
+
+Feb/91: The approximate pattern matching algorithm called 'bitap'
+	(bit-parallel approximate pattern matching) is designed.
+	The algorithm is a generalization of Baeza-Yates' "shift-or"
+	algorithm for exact matching.
+
+Mar/91: Many extensions of the algorithm 'bitap' are found, especially
+	for approximate regular expression pattern matching.  Preliminary
+	implementation of the algorithm showed a strong promise for 
+	a general-purpose fast approximate pattern-matching tool.
+
+Apr/91: Approximate regular expression pattern matching was implemented.
+	The result is even better than expected. 
+	The design of the software tool is pinned down.
+	(For example, record oriented, multi-pattern, AND/OR logic queries.)
+	A partition technique for approximate pattern matching is used.
+	
+May/91: The prototype of "agrep" is completed.
+	A lot of debugging/optimization in this month.
+
+Jun/91: The first version of agrep is released.
+	agrep 1.0 was announced and made available by anonymous ftp 
+	from cs.arizona.edu.
+
+Jul/91: A sub-linear expected-time algorithm, called "amonkey" for 
+	approximate pattern matching (for simple pattern) is designed.
+	The algorithm has the same time complexity as that of
+	Chang&Lawler but is much much faster in practice.
+	The algorithm is based on a variation of Boyer-Moore technique,
+	which we call "block-shifting." 
+	A sub-linear expected-time algorithm, called "mgrep" for 
+	matching a set of patterns is designed based on the "block-shifting" 
+	technique with a hashing technique.
+
+Aug/91: "amonkey" is implemented and incorporated into agrep.
+	It is very fast for long patterns like DNA patterns.
+	(But roughly the same for matching English words as the bitap
+	algorithm using the partition technique.)
+	Prototype of "mgrep" is implemented.
+
+Sep/91: "mgrep" is incorporated into agrep to support the -f option.
+	An algorithm for approximate pattern matching that combines the 
+	'partition' technique with the sub-linear expected-time algorithm 
+	for multi-patterns is designed.
+	Implementation shows it to be the fastest for ASCII text (and pattern).
+	Boyer-moore technique for exact matching is incorporated.
+
+Nov/91: The final paper of "agrep" that is to appear in USENIX
+	conference (Jan 1992)  is finished.
+
+Jan/92: Some new options are added, such as find best matches (-B), 
+	and file outputs (-G).
+	The man pages are revised.
+	agrep version 2.0 is released.
+	Fixed the following bugs and change the version to be 2.01.
+	1. -G option doesn't work correctly.
+	2. multiple definition of some global variables.
+	3. -# with -w forced the first character of the pattern to be matched
+
+Mar/92: Fixed the following bugs and change the version to be 2.02.
+	1. agrep sometimes misses some matches for pipeline input.
+	2. the word delimiter was not defined consistantly.
+
+------------------------------------------------------------------------------
+bgopal: The following changes were made to the original agrep during 1993-94:
+
+1. Modifications to make main() take multiple options from the same '-' group:
+	- the only modifications were in main.c.
+
+2. Now, to make agrep take input from a buffer so that it can be used as a
+   procedure from another program. Places where changes have to be done:
+
+	- asearch.c/fill_buf(), bitap.c/fill_buf()
+	- main.c/read() statements
+	- mgrep.c/read() statements
+	- sgrep.c/read() statements
+	- probably don't have to change scanf in main.c where a y/n is asked.
+	- probably don't have to change readdir in recursive.c.
+
+I have used fill_buf everywhere for reading things from a file. I have to
+verify whether this is actually used to take input in which it has to search
+for patterns or to read things REALLY from a file (-f option, file_out, etc.).
+If former, then I can simply modify fill_buf to read from an fd or from
+an input string. How to specify that string / area of memory is a separate
+issue to be resolved during the weekend.
+
+I have resolved it. I've also made a library interface for agrep. So 2 is done.
+
+3. Make errno = exit code whenever you return -1 instead of exiting.
+
+4. See if there is a way to avoid copying of memory bytes in agrep
+   by using pointer manipulation instead of fill_buf: a part of making agrep
+   a callable routine. Important to make it really fast, that's why do this.
+
+   Solution:
+   ---------
+   I think I've solved the problem: but there is a restriction for within the
+   memory pattern matching: THE SEARCHBUFFER HAS TO BEGIN WITH A NEWLINE --
+   otherwise we cannot avoid the copying. This fact can be checked in the
+   library interface.
+
+   There are some more problems whose solution I'm not sure of: ask Udi.
+   The problem is:
+	a. In asearch(), asearch0() and asearch1(), some data is copied after
+	   the data read in the buffer. Is that crucial? The same thing can be
+	   seen in bitap(). This is done when num_read < BlockSize -- why?
+	b. In sgrep(), the whole buffer is filled with pat[m-1] so that bm()
+	   does not enter an infinite-loop. Is that crucial if there is an
+	   equivalent of a single iteration of the while-fill_buf-loop.
+
+   I have not modified prepf() to read the multi-pattern from memory, not a
+   file.  I have to modify it later (including agrep.c). Function fill_buf now
+   simply reads from the fd given: it does not bother about pointer
+   manipulation.  Note: wherever there is a while(i<end) loop,
+   buffer[0] = buffer[end-1] = '\n'; assignment is made, and wherever
+   monkey(..start,end..) is called, the assignment
+   buffer[0] = buffer[end] = '\0'; is made. The semantics are consistent
+   with what end happens to be.
+
+   NOTE:
+   -----
+   The amount of "space" expected is = length of the pattern. Now, is there a
+   way to avoid buserr/segv by using a syscall to find out if buffer+pattern
+   is in valid memory? If so, we can return error to user, instead of
+   terminating! Painful since we have to trap SIGSEGV and ruin an already
+   trapped SIGSEGV, and we don't know if the fault was due to us or them.
+
+5. Is there a way to modify agrep so that it can search through tcompress-ed
+   files? One way would be to handle them separately in a function called
+   tgrep(), say.  But we would then have to call the functions bitap(),
+   mgrep() and sgrep() from WITHIN tgrep() anyway. The other way would be
+   to modify the pattern in the beginning and let the normal processing of
+   agrep continue.
+
+   The next thing would be to uncompress the matched line for printout purposes.
+   This is complicated in the sense that -- we might have to look for a literal
+   char#10 within verbatim, OR the code for '\n' among the special characters.
+
+   Also, we have to search not only for words in the dictionary, but words in
+   verbatim too! Moreover, I have to be careful about the exact translation of
+   a verbatim/non-verbatim word.
+
+   - I'm working on this now: I know the translation algo (its just like
+     uncompress) but the interface to agrep (I have to rewrite the input
+     handling by myself since the way '\n's are searched for in normal files
+     is quite different.  The difficult thing is going backwards and looking
+     for the previous '\n' -- I don't have to literally search for '\n' --
+     I can remember the position of the previous one. Identifying '\n' in
+     sgrep(), mgrep() and other functions has to be changed.
+   - Moreover, I have to uncompress a file not from the beginning, but from the
+     position of a '\n' to the next '\n' or eof. So compress/uncompress must
+     also be callable routines.
+**** This including modifications to all routines in sgrep.c and newmgrep.c
+     were completed and debugged by Aug '94.
+
+6. What options can be added to agrep as a callable routine so that the output
+   can be put into a user-level buffer / returned as values which can be
+   examined, etc., so that the thing does not go onto the stdout! Moreover,
+   copying the matched lines might not be desirable -- the user might want
+   line numbers, or pointers to the beginning of the lines where the match
+   occurs and the offset of the match...  (* Callable routine => lots of
+   problems! *).
+**** These were completed and added into glimpse/glimpseindex in Spring 1994.
+
+7. One other problems with agrep as a callable routine: the variable names used
+   by agrep can clash with user defined variable names. Making agrep variables
+   static is not going to help since they are accessed throughout agrep code.
+   Making code reentrant is not the issue (it is almost impossible!).
+
