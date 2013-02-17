@@ -45,7 +45,11 @@ AGREP [-#cdehi[a|#]klnprstvwxyABDGIRS] [-f patternfile] [-H dir] pattern [files]
 Installation
 ============
 
-```$ make```
+```
+git clone git@github.com:Wikinaut/agrep.git
+cd agrep
+make
+```
 
 
 Algorithms
