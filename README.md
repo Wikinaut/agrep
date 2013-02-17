@@ -96,8 +96,21 @@ History
 * see [agrep.chronicle](https://github.com/Wikinaut/agrep/blob/master/agrep.chronicle)
 
 
-Homepage
-========
+Alternatives to AGREP
+=====================
+
+* [Alternatives](http://www.tgries.de/agrep)
+
+
+Further stuff with the same name (agrep)
+========================================
+
+* [aGrep](https://play.google.com/store/apps/details?id=jp.sblo.pandora.aGrep&hl=de), published in 2012, is an Android implementation of ```grep``` (but not ```agrep```).
+
+
+Homepage and references
+=======================
 
 * http://www.tgries.de/agrep
 * http://webglimpse.net
+* https://en.wikipedia.org/wiki/Agrep
