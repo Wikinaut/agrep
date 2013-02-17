@@ -9,25 +9,60 @@ Fast searching files for a string or regular expression, with approximate matchi
 
 Developed 1989-1991 by Udi Manber, Sun Wu et al. at the University of Arizona.
 
+Usage
+=====
+
+Type
+
+```$ agrep```
+
+to get the six built-in help pages.
+
+```
+           Approximate Pattern Matching GREP -- Get Regular Expression
+Usage:
+AGREP [-#cdehi[a|#]klnprstvwxyABDGIRS] [-f patternfile] [-H dir] pattern [files]
+-#  find matches with at most # errors     -A  always output filenames
+-b  print byte offset of match
+-c  output the number of matched records   -B  find best match to the pattern
+-d  define record delimiter                -Dk deletion cost is k
+-e  for use when pattern begins with -     -G  output the files with a match
+-f  name of file containing patterns       -Ik insertion cost is k
+-h  do not display file names              -Sk substitution cost is k
+-i  case-insensitive search; ISO <> ASCII  -ia ISO chars mapped to lower ASCII
+-i# digits-match-digits, letters-letters   -i0 case-sensitive search
+-k  treat pattern literally - no meta-characters
+-l  output the names of files that contain a match
+-n  print line numbers of matches  -q print buffer byte offsets
+-p  supersequence search                   -CP 850|437 set codepage
+-r  recurse subdirectories (UNIX style)    -s silent
+-t  for use when delimiter is at the end of records
+-v  output those records without matches   -V[012345V] version / verbose more
+-w  pattern has to match as a word: "win" will not match "wind"
+-u  unterdruecke record output             -x  pattern must match a whole line
+-y  suppresses the prompt when used with -B best match option
+@listfile  use the filenames in listfile                              <1>23456Q
+```
+
 
 Installation
 ============
 
-* ```make```
+```$ make```
 
 
 Algorithms
 ==========
 
-* see agrep.algorithms
-* see /docs
-* see readme
+* see [agrep.algorithms]((https://github.com/Wikinaut/agrep/blob/master/agrep.algorithms))
+* see [/docs](https://github.com/Wikinaut/agrep/blob/master/docs)
+* see [readme](https://github.com/Wikinaut/agrep/blob/master/readme)
 
 
 COPYRIGHT
 =========
 
-* see COPYRIGHT
+* see [COPYRIGHT](https://github.com/Wikinaut/agrep/blob/master/COPYRIGHT)
 
 This material was developed by Sun Wu, Udi Manber and Burra Gopal
 at the University of Arizona, Department of Computer Science.
@@ -55,13 +90,13 @@ of the authors.
 Contributors
 ============
 
-* see contribution.list
+* see [contribution.list](https://github.com/Wikinaut/agrep/blob/master/contribution.list)
 
 
 History
 =======
 
-* see https://github.com/Wikinaut/agrep/blob/master/agrep.chronicle(agrep.chronicle)
+* see [agrep.chronicle](https://github.com/Wikinaut/agrep/blob/master/agrep.chronicle)
 
 
 Homepage
