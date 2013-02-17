@@ -1,3 +1,5 @@
+<img src="https://raw.github.com/Wikinaut/agrep/master/resources/agrep.gif">
+
 agrep
 =====
 
