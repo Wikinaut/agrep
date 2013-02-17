@@ -61,7 +61,7 @@ Contributors
 History
 =======
 
-* see agrep.chronicle
+* see https://github.com/Wikinaut/agrep/blob/master/agrep.chronicle(agrep.chronicle)
 
 
 Homepage
