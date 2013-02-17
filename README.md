@@ -10,8 +10,24 @@ Fast searching files for a string or regular expression, with approximate matchi
 Developed 1989-1991 by Udi Manber, Sun Wu et al. at the University of Arizona.
 
 
+Installation
+============
+
+* ```make```
+
+
+Algorithms
+==========
+
+* see agrep.algorithms
+* see /docs
+* see readme
+
+
 COPYRIGHT
 =========
+
+* see COPYRIGHT
 
 This material was developed by Sun Wu, Udi Manber and Burra Gopal
 at the University of Arizona, Department of Computer Science.
@@ -34,3 +50,22 @@ is an experimental prototype offered on an as-is basis.
 
 4. Redistribution for profit requires the express, written permission
 of the authors.
+
+
+Contributors
+============
+
+* see contribution.list
+
+
+History
+=======
+
+* see agrep.chronicle
+
+
+Homepage
+========
+
+* http://www.tgries.de/agrep
+* http://webglimpse.net
