@@ -55,6 +55,8 @@ make
 Algorithms
 ==========
 
+* [Wu, S., Manber, U.: "Agrep - A Fast Approximate Pattern-Matching Tool", 1992.](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.48.8488)
+* [Wu, S., Manber, U.: "Fast Text Searching With Errors", 1991.](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.20.8854)
 * see [agrep.algorithms]((https://github.com/Wikinaut/agrep/blob/master/agrep.algorithms)
 * see [/docs](https://github.com/Wikinaut/agrep/blob/master/docs)
 * see [readme](https://github.com/Wikinaut/agrep/blob/master/readme)
@@ -118,3 +120,5 @@ Homepage and references
 * http://www.tgries.de/agrep
 * http://webglimpse.net
 * https://en.wikipedia.org/wiki/Agrep
+* [Wu, S., Manber, U.: "Agrep - A Fast Approximate Pattern-Matching Tool", 1992.](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.48.8488)
+* [Wu, S., Manber, U.: "Fast Text Searching With Errors", 1991.](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.20.8854)
