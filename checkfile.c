@@ -1,7 +1,7 @@
-/* Copyright (c) 1994 Sun Wu, Udi Manber, Burra Gopal.  All Rights Reserved. */
 /*
  *  checkfile.c
- *    takes a file name and checks to see if a file is a regular ascii file
+ *    takes a file descriptor and checks to see if a file is a regular
+ *    ascii file
  *
  */
 
@@ -11,15 +11,8 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 #include <errno.h>
+
 #include "checkfile.h"
-
-#ifndef S_ISREG
-#define S_ISREG(mode) (0100000&(mode))
-#endif
-
-#ifndef S_ISDIR
-#define S_ISDIR(mode) (0040000&(mode))
-#endif
 
 #define MAXLINE 512
 
@@ -42,38 +35,37 @@ int check_file(fname)
 char *fname;
 
 {
-	struct stat buf;
+struct stat buf;
+int ftype;
 
-	if (my_stat(fname, &buf) != 0) {
-		if (errno == ENOENT)
-			return NOSUCHFILE;
-		else
-			return STATFAILED;  
-	} 
-	else {
-		/*
-			  int ftype;
-			  if (S_ISREG(buf.st_mode)) {
-				if ((ftype = samplefile(fname)) == ISASCIIFILE) {
-				  return ISASCIIFILE;
-				} else if (ftype == ISBINARYFILE) {
-				  return ISBINARYFILE;
-				} else if (ftype == OPENFAILED) {
-				  return OPENFAILED;
-				}
-			  }
-			  if (S_ISDIR(buf.st_mode)) {
-				return ISDIRECTORY;
-			  }
-			  if (S_ISBLK(buf.st_mode)) {
-				return ISBLOCKFILE;
-			  }
-			  if (S_ISSOCK(buf.st_mode)) {
-				return ISSOCKET;
-			  }
-		*/
-		return 0;
-	}
+
+  if (stat(fname, &buf) != 0) {
+    if (errno == ENOENT)
+      return NOSUCHFILE;
+    else
+      return STATFAILED;  
+    } else {
+/*
+      if (S_ISREG(buf.st_mode)) {
+        if ((ftype = samplefile(fname)) == ISASCIIFILE) {
+          return ISASCIIFILE;
+        } else if (ftype == ISBINARYFILE) {
+          return ISBINARYFILE;
+        } else if (ftype == OPENFAILED) {
+          return OPENFAILED;
+        }
+      }
+      if (S_ISDIR(buf.st_mode)) {
+        return ISDIRECTORY;
+      }
+      if (S_ISBLK(buf.st_mode)) {
+        return ISBLOCKFILE;
+      }
+      if (S_ISSOCK(buf.st_mode)) {
+        return ISSOCKET;
+      }
+*/
+    }
 }
 
 /***************************************************************************
@@ -92,23 +84,21 @@ int numread;
 int fd;
 
   if ((fd = open(fname, O_RDONLY)) == -1) {
-	fprintf(stderr, "open failed on filename %s\n", fname);
-	return OPENFAILED;
+    fprintf(stderr, "open failed on filename %s\n", fname);
+    return OPENFAILED;
   }
-
-  -comment- No need to use alloc_buf and free_buf here since always read from non-ve fd -tnemmoc-
-  if (numread = fill_buf(fd, ibuf, MAXLINE)) {
+  if (numread = read(fd, ibuf, MAXLINE)) {
    close(fd);
    p = ibuf;
-	while (ISASCII(*p++) && --numread);
-	if (!numread) {
-	  return(ISASCIIFILE);
-	} else {
-	  return(ISBINARYFILE);
-	}
+    while (isascii(*p++) && --numread);
+    if (!numread) {
+      return(ISASCIIFILE);
+    } else {
+      return(ISBINARYFILE);
+    }
   } else {
-	close(fd);
-	return(ISASCIIFILE);
+    close(fd);
+    return(ISASCIIFILE);
   }
 }
 */

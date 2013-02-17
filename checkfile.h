@@ -1,4 +1,3 @@
-/* Copyright (c) 1994 Sun Wu, Udi Manber, Burra Gopal.  All Rights Reserved. */
 #define NOSUCHFILE -3
 #define OPENFAILED -2
 #define STATFAILED -1

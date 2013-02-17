@@ -1,9 +1,3 @@
-/* Copyright (c) 1994 Sun Wu, Udi Manber, Burra Gopal.  All Rights Reserved. */
-
-/*	09.09.96	T.Gries		new definition of ASCII_MAX
-					allows the fully ISO-Charset.
-*/
-
 /*************************************************************
  *							     *
  * 	Macros defining special characters.		     *
@@ -12,7 +6,7 @@
 
 #define NUL	    '\0'
 #define ASCII_MIN   '\001'
-#define ASCII_MAX   '\377'	/* changed by TG. Orginal value was \177 */
+#define ASCII_MAX   '\177'
 
 /*************************************************************
  *							     *
@@ -70,75 +64,66 @@
 
 /*************************************************************/
 
-#define new_node(type, l, x)	\
-{\
-	extern void *malloc();\
-\
-	(l) = (type) malloc(sizeof(*(x)));\
-	if ((l) == NULL) {\
-		fprintf(stderr, "malloc failure in new_node\n");\
-		exit(2);\
-	}\
-	memset((l), '\0', sizeof(*(x)));\
-}
+#define new_node(x)	malloc(sizeof(*x))
 
 typedef struct {	/* character range literals */
-		char low_bd, hi_bd;
+	    char low_bd, hi_bd;
 	} *Ch_Range;
 
 typedef struct ch_set {	    /* character set literals */
-		Ch_Range elt;	/* rep. as list of ranges */
-		struct ch_set *rest;
+	    Ch_Range elt;	/* rep. as list of ranges */
+	    struct ch_set *rest;
 	} *Ch_Set;
 
 typedef struct {	/* regular expression literal */
-		int pos;	     /* position in syntax tree */
-		short l_type;    /* type of literal */
-		union {
+	    int pos;	     /* position in syntax tree */
+	    short l_type;    /* type of literal */
+	    union {
 		char c;     /* for character literals */
 		Ch_Set cset; /* for character sets */
-		} val;
+	    } val;
 	} *Re_Lit, *(*Re_lit_array)[];
 
 typedef struct pnode {
-		int posnum;
-		struct pnode *nextpos;
+	    int posnum;
+	    struct pnode *nextpos;
 	} *Pset, *(*Pset_array)[];
 
 typedef struct rnode {	/* regular expression node */
-		short op;     /* operator at that node */
-		union {
+	    short op;     /* operator at that node */
+	    union {
 		Re_Lit lit;		/* child is a leaf node */
 		struct rnode *child;	/* child of unary op */
 		struct {
-			struct rnode *l_child; 
-			struct rnode *r_child;
+		    struct rnode *l_child; 
+		    struct rnode *r_child;
 		} children;		/* children of binary op */
-		} refs;
-		short nullable;
-		Pset firstposn, lastposn;
+	    } refs;
+	    short nullable;
+	    Pset firstposn, lastposn;
 	} *Re_node;
 
 typedef struct {			/* token node */
-		short type;
-		Re_node val;
+	    short type;
+	    Re_node val;
 	} *Tok_node;
 
 
 typedef struct snode {
-		Re_node val;
-		int size;
-		struct snode *next;
+	    Re_node val;
+	    int size;
+	    struct snode *next;
 	} *Stack;
 
 typedef struct dfa_st {
-		Pset posns;
-		int final;	    /* 1 if the state is a final state, 0 o/w */
-		struct dfa_st *trans[128];
+	    Pset posns;
+	    int final;	    /* 1 if the state is a final state, 0 o/w */
+	    struct dfa_st *trans[128];
 	} *Dfa_state;
 
 typedef struct dfa_stset {
-		Dfa_state st;
-		struct dfa_stset *next_state;
+	    Dfa_state st;
+	    struct dfa_stset *next_state;
 	} *Dfa_state_set;
+
 
