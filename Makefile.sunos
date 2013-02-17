@@ -1,0 +1,131 @@
+# Copyright (c) 1994 Sun Wu, Udi Manber, Burra Gopal.  All Rights Reserved.
+
+# You might have to change these depending on your machine configuration.
+# AR and RANLIB are the library-archive programs. On Solaris, RANLIB is not
+# required (define it to true) and AR is in /usr/ccs/bin/ar (on our machine!).
+AR	      = ar #/usr/ccs/bin/ar #for Solaris
+RANLIB	      = ranlib #true #for Solaris
+
+# Define HAVE_DIRENT_H to be 1 when you don't have <sys/dir.h> else define it to be 0 (in this case, one of the other 3 flags may need to be defined to be 1).
+HAVE_DIRENT_H = 1
+HAVE_SYS_DIR_H	= 0
+HAVE_SYS_NDIR_H	= 0
+HAVE_NDIR_H	= 0
+
+# Define UTIME to be 1 if you have the utime() routine on your system. Else define it to be 0.
+UTIME = 1
+
+# Define ISO_CHAR_SET to be 1 if you want to use the international 8bit character set. Else define it to be 0.
+ISO_CHAR_SET = 0
+
+# You might have to change this depending on your machine configuration.
+CC	      = gcc
+
+SHELL = /bin/sh
+
+# YOU DON'T HAVE TO CHANGE ANYTHING BELOW THIS LINE
+
+# The binaries will be made in ../bin/. and the agrep library in ../lib
+# You normally don't have to change them.
+BINDIR	      = ../bin
+LIBDIR	      = ../lib
+TCOMP	      =	cast
+TCOMPDIR      = ../compress
+AGREPDIR      = ../agrep
+TEMPLATEDIR   = ../libtemplate
+
+# You can change the target to use the "cast" (compression) library by changing:
+#	all: $(NOTCPROG)
+# to:
+#	all: $(PROG)
+# You must also define DOTCOMPRESSED below to be 1 instead of 0.
+
+DOTCOMPRESSED = 0
+
+# Include flags is not a part of CLFAGS and LINKFLAGS since path names from subdirs can be different
+OPTIMIZEFLAGS	= -O
+#PROFILEFLAGS	= -p
+#DEBUGFLAGS	= -g -DBG_DEBUG=1 -DDEBUG=1
+INCLUDEFLAGS	= -I$(AGREPDIR) -I$(TEMPLATEDIR)/include
+DEFINEFLAGS	= -DHAVE_DIRENT_H=$(HAVE_DIRENT_H) -DHAVE_SYS_DIR_H=$(HAVE_SYS_DIR_H) -DHAVE_SYS_NDIR_H=$(HAVE_SYS_NDIR_H) -DHAVE_NDIR_H=$(HAVE_NDIR_H) \
+		  -DUTIME=$(UTIME) -DISO_CHAR_SET=$(ISO_CHAR_SET)
+SUBDIRCFLAGS	= -c $(DEFINEFLAGS) $(OPTIMIZEFLAGS) $(PROFILEFLAGS) $(DEBUGFLAGS)
+MYDEFINEFLAGS	= -DMEASURE_TIMES=0 -DAGREP_POINTER=1 -DDOTCOMPRESSED=$(DOTCOMPRESSED)
+CFLAGS		= $(MYDEFINEFLAGS) $(INCLUDEFLAGS) $(SUBDIRCFLAGS)
+SUBDIRLINKFLAGS	= $(PROFILEFLAGS)
+LINKFLAGS	= $(INCLUDEFLAGS) $(SUBDIRLINKFLAGS)
+OTHERLIBS	=
+
+PROG	      = agrep
+NOTCPROG      = notc$(PROG)
+
+all: $(NOTCPROG)
+	cp $(PROG) $(BINDIR)/.
+
+LIB	      = $(LIBDIR)/lib$(PROG).a
+HDRS	      =	agrep.h checkfile.h re.h defs.h config.h
+TCOMPLIBOBJ   = \
+		$(TCOMPDIR)/hash.o \
+		$(TCOMPDIR)/string.o \
+		$(TCOMPDIR)/misc.o \
+		$(TCOMPDIR)/quick.o \
+		$(TCOMPDIR)/cast.o \
+		$(TCOMPDIR)/uncast.o \
+		$(TCOMPDIR)/tsimpletest.o \
+		$(TCOMPDIR)/tbuild.o\
+		$(TCOMPDIR)/tmemlook.o
+OBJS	      =	\
+		follow.o	\
+		asearch.o	\
+		asearch1.o	\
+		agrep.o		\
+		bitap.o		\
+		checkfile.o	\
+		compat.o	\
+		maskgen.o	\
+		parse.o		\
+		checksg.o	\
+		preprocess.o	\
+		delim.o		\
+		asplit.o	\
+		recursive.o	\
+		sgrep.o		\
+		newmgrep.o	\
+		utilities.o
+
+$(PROG):	$(OBJS) main.o $(LIBDIR)/lib$(TCOMP).a
+		$(CC) -L$(LIBDIR) $(LINKFLAGS) -o $@ $(OBJS) main.o -l$(TCOMP) $(OTHERLIBS)
+		$(AR) rcv $(LIB) $(OBJS) $(TCOMPLIBOBJ)
+		$(RANLIB) $(LIB)
+
+$(LIBDIR)/lib$(TCOMP).a:
+		cd $(TCOMPDIR) ; $(MAKE) -f Makefile.sunos CC="$(CC)" SUBDIRCFLAGS="$(SUBDIRCFLAGS)" SUBDIRLINKFLAGS="$(SUBDIRLINKFLAGS)" SHELL="$(SHELL)" HAVE_DIRENT_H="$(HAVE_DIRENT_H)" HAVE_SYS_DIR_H="$(HAVE_SYS_DIR_H)" HAVE_SYS_NDIR_H="$(HAVE_SYS_NDIR_H)" HAVE_NDIR_H="$(HAVE_NDIR_H)" UTIME="$(UTIME)" STRUCTURED_QUERIES="$(STRUCTURED_QUERIES)" ISO_CHAR_SET="$(ISO_CHAR_SET)" SFS_COMPAT="$(SFS_COMPAT)"
+
+$(NOTCPROG):	$(OBJS) dummyfilters.o main.o
+		$(CC) $(LINKFLAGS) -o $(PROG) $(OBJS) dummyfilters.o main.o $(OTHERLIBS)
+		$(AR) rcv $(LIB) $(OBJS) dummyfilters.o
+		$(RANLIB) $(LIB)
+
+clean:
+		-rm -f $(LIB) $(OBJS) dummyfilters.o main.o core a.out $(PROG)
+
+compat.o:	agrep.h defs.h config.h
+asearch.o:	agrep.h defs.h config.h
+asearch1.o:	agrep.h defs.h config.h
+bitap.o:	agrep.h defs.h config.h
+checkfile.o:	agrep.h checkfile.h defs.h config.h
+follow.o:	re.h agrep.h defs.h config.h
+main.o:		agrep.h checkfile.h defs.h config.h dummysyscalls.c
+agrep.o:	agrep.h checkfile.h defs.h config.h
+newmgrep.o:	agrep.h defs.h config.h
+maskgen.o:	agrep.h defs.h config.h
+next.o:		agrep.h defs.h config.h
+parse.o:	re.h agrep.h defs.h config.h
+preprocess.o:	agrep.h defs.h config.h
+checksg.o:	agrep.h checkfile.h defs.h config.h
+delim.o:	agrep.h defs.h config.h
+asplit.o:	agrep.h defs.h config.h
+sgrep.o:	agrep.h defs.h config.h
+abm.o:		agrep.h defs.h config.h
+utilities.o:	re.h agrep.h defs.h config.h
+dummyfilters.o:	dummyfilters.c
