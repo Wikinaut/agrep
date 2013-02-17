@@ -1,0 +1,7 @@
+3.411 20130216 TG small changes, help file, version, preparing for Github, makefile makefile.os2, CHANGES
+3.41  200040531 TG The versions AGREP 3.41 for LINUX, AGREP 3.37 for Windows 95/NT, AGREP 3.35 for OS/2 and DOS
+                  are based on the AGREP program from GLIMPSE 3.0.
+                  Many bugs have been identified and I regard my version as the most tested and debugged version of all AGREP versions 
+                  I found until 31.05.2004. However, the core from which I started is extremely diffcult to read (apart from understanding)
+                  and lacking descriptions. However, my port never crashed in all the last eight years.
+3.0               Agrep version 3.0 as in GLIMPSE 3.0

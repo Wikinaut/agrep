@@ -1,0 +1,70 @@
+To: "'gries@ibm.net'" <gries@ibm.net>
+Subject: Port of agrep to Win95/WinNT
+Date: Wed, 31 Dec 1997 10:25:46 -0500
+
+Hi,
+
+I recently had need of a version of agrep that ran on Windows NT and I
+didn't want to install emx and/or rsx.  So I took the source code and
+did a quick port to Windows.  It now runs natively at the command line
+under Windows 95 (very little testing) and Windows NT (NT 4.0 SP3 where
+I did the work).  I compiled the code using Microsoft VC 5.0.  My
+changes were minor with the biggest changes being the addition of two
+new files (public domain code) that handle the dirent.h type functions
+(I called them ntdirent.c and ntdirent.h).  I also added function
+prototypes to reduce the number of warning messages so I could see the
+real problems but I didn't do anything with the numerous signed/unsigned
+comparison warnings.  I also linked with the Microsoft globbing object
+code so file globbing is now taken care of automatically without
+resorting to response files.  For completeness sake I'll tell you that I
+didn't touch the codepage stuff (except to get it to compile) because I
+don't need it. 
+
+I'm attaching a zip file of the modified source code.  It contains an
+agrep executable (compiled without debugging), a makefile (agrep.mak),
+and the output of the differences between my version and version 3.33.  
+
+The diff command used to get the diff file was:  diff -u -r -new-file
+agrep.org agrep.win
+The patch command to apply the changes to the original is: patch -N <
+agrep.dif
+To compile the sources I used: nmake -f agrep.mak  (by default this
+creates the release version)
+
+Do with what you will with the changes; I have what I need and don't
+have the time to support the code.  I'm hoping that you can find some
+use from my day's work.
+
+Good Luck,
+David
+
+
+To: "'Tom Gries'" <gries@ibm.net>
+Subject: RE: Port of agrep to Win95/WinNT
+Date: Fri, 2 Jan 1998 17:02:49 -0500
+
+Tom,
+
+Attached to this email is my update to your 3.35 sources of agrep.  The
+changes you made were small so it didn't take too long.
+
+Included in the zip file is:
+(1)    a diff of the 3.33 to 3.35 changes (333to335.dif)
+(2)    a diff of my changes to 3.35 (AgrepWin.dif)
+(3)    a makefile for Microsoft VC 5.0 (Agrep.mak)
+(4)    an executable compiled without debugging (Agrep.exe)
+
+For your information I did a quick compile and some testing using
+BoundsChecker from NuMega Software.  The only problem it found was on
+line 723 of sgrep.c.  BoundsChecker complains about an uninitialized
+memory access.  In the agrep source directory I was using the command:
+agrep -r "main" *.*  .  I don't have time to track it down completely
+but I do know that the problem happens during the processing of
+codepage.c,  It seems to have something to do with a character very high
+(or out of) the SHIFT table.  Sorry I don't have time right now to look
+any further.  The good news is that nothing else was found as being a
+problem.
+
+Good Luck,
+Dave
+
