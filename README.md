@@ -55,7 +55,7 @@ make
 Algorithms
 ==========
 
-* see [agrep.algorithms]((https://github.com/Wikinaut/agrep/blob/master/agrep.algorithms))
+* see [agrep.algorithms]((https://github.com/Wikinaut/agrep/blob/master/agrep.algorithms)
 * see [/docs](https://github.com/Wikinaut/agrep/blob/master/docs)
 * see [readme](https://github.com/Wikinaut/agrep/blob/master/readme)
 
