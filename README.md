@@ -11,7 +11,7 @@ Usage
 
 Type
 
-```$ agrep```
+```agrep```
 
 to get the six built-in help pages.
 
@@ -45,9 +45,9 @@ Branches
 ========
 
 The present repository contains three different branches.
-* master: agrep based on agrep 3.0, ported to OS/2, DOS and Windows in the 90ies, and backported to LINUX (the present version you are visiting)
-* agrep3.0-as-found-in-glimpse4.18.6-20130216: agrep 3.0 as it was found in the glimpse software
-* agrep2.04: the first published and original agrep version
+* **master**: agrep based on agrep 3.0, ported to OS/2, DOS and Windows in the 90ies, and backported to LINUX (the present version you are visiting)
+* **agrep3.0-as-found-in-glimpse4.18.6-20130216**: agrep 3.0 as it was found in the glimpse software
+* **agrep2.04**: the first published and original agrep version
 
 
 Installation
