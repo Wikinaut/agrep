@@ -1,13 +1,11 @@
 #
-#	agrepos2.mk
-#	Makefile for LINUX version of AGREP
+#	agrep
+#
+#	Makefile for the LINUX version of AGREP
 #
 #	Copyright (c) 1994 Sun Wu, Udi Manber, Burra Gopal.  All Rights Reserved.
 #
 
-#		The switches -Zomf and -Zsys are sufficient to create an
-#		OS/2-only stand-alone executable, which does not need EMX.DLL
-#
 CC		= gcc -ansi -O3
 
 # ---------------------------------------------------------------------

@@ -1,6 +1,6 @@
 <img src="https://raw.github.com/Wikinaut/agrep/master/resources/agrep.gif">
 
-AGREP -- an approximate GREP. 
+AGREP - an approximate GREP. 
 
 Fast searching files for a string or regular expression, with approximate matching capabilities and user-definable records. 
 
@@ -40,6 +40,14 @@ AGREP [-#cdehi[a|#]klnprstvwxyABDGIRS] [-f patternfile] [-H dir] pattern [files]
 -y  suppresses the prompt when used with -B best match option
 @listfile  use the filenames in listfile                              <1>23456Q
 ```
+
+Branches
+========
+
+The present repository contains three different branches.
+* master: agrep based on agrep 3.0, ported to OS/2, DOS and Windows in the 90ies, and backported to LINUX (the present version you are visiting)
+* agrep3.0-as-found-in-glimpse4.18.6-20130216: agrep 3.0 as it was found in the glimpse software
+* agrep2.04: the first published and original agrep version
 
 
 Installation
@@ -105,7 +113,11 @@ History
 Alternatives to AGREP
 =====================
 
-* [Alternatives](http://www.tgries.de/agrep)
+[Alternatives](http://www.tgries.de/agrep):
+* TRE is a lightweight, robust, and efficient POSIX compliant regexp matching library with some exciting features such as approximate (fuzzy) matching. 
+* AGREPY: Python port of agrep string matching with errors
+* The bitap library , another new and fresh implementation of the bitap algorithm. Windows - C - Cygwin
+* PERL module String:Approx. Perl extension for approximate matching (fuzzy matching) by Jarkko Hietaniemi, Finland
 
 
 Further stuff with the same name (agrep)
