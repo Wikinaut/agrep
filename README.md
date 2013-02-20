@@ -11,7 +11,7 @@ Usage
 
 Type
 
-```agrep```
+    agrep
 
 to get the six built-in help pages.
 
