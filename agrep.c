@@ -2630,7 +2630,7 @@ int agrep_init(argc, argv, initialfd, pattern_len, pattern_buffer)
 					break;
 				
 				case '\0':
-					printf("\nThis is agrep version %s for %s, %s.\n\n", AGREP_VERSION, AGREP_OS, AGREP_DATE);
+					printf("\n%s\n", AGREP_VERSION_STRING );
 					return 0;
 					
 				default:

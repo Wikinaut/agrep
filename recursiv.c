@@ -62,7 +62,9 @@
 int  exec();    /* agrep.c */
 #endif
 
-#include <sys/stat.h>
+/*
+ * #include <sys/stat.h>
+ */
 #include <fcntl.h>
 #define BUFSIZE 256
 #define DIRSIZE 14
@@ -77,8 +79,14 @@ int  exec();    /* agrep.c */
 #endif
 
 /* TG 28.04.04 */
+/* TG 2013032 */
+#ifndef S_IFDIR
 #define S_IFDIR __S_IFDIR
+#endif
+
+#ifndef S_IFMT
 #define S_IFMT __S_IFMT
+#endif
 
 char *file_list[max_list*2];
 int  fdx=0; /* index of file_List */

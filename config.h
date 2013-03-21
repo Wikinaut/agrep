@@ -12,7 +12,23 @@
 #endif
 
 #ifdef _WIN32
-#define S_ISDIR(mode) (((mode) & S_IFMT) == S_IFDIR)
-#define S_ISREG(mode) (((mode) & S_IFMT) == S_IFREG)
-#endif 
 
+#ifndef S_ISDIR
+#define S_ISDIR(mode) (((mode) & S_IFMT) == S_IFDIR)
+#endif
+
+#ifndef S_ISREG
+#define S_ISREG(mode) (((mode) & S_IFMT) == S_IFREG)
+#endif
+
+#else
+
+#ifndef S_ISREG
+#define S_ISREG(mode) (0100000&(mode))
+#endif
+
+#ifndef S_ISDIR
+#define S_ISDIR(mode) (0040000&(mode))
+#endif
+
+#endif

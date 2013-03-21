@@ -1,4 +1,5 @@
 /*
+[chg] 3.412 TG 20130321 makefile for Win32 for the MXE M Crosscompiler Environment http://mxe.cc
 [chg] 3.411 TG 20130216 small changes, help file, version, preparing for Github, makefile makefile.os2, CHANGES
 [fix] 3.40 TG 08.11.2004 option -By does not work together with -n. to allow this, I commented LINENUM out
 [fix]	3.35	TG 11.12.97	in agrep(): -f now working again
@@ -41,9 +42,7 @@
 
 */
 
-#define AGREP_VERSION	"3.411/TG"
-
-#define AGREP_OS "LINUX"
+#define AGREP_VERSION	"3.412/TG"
 
 #ifdef __DOS
 #define AGREP_OS	"DOS"
@@ -61,4 +60,11 @@
 #define AGREP_OS	"WIN32"
 #endif
 
+#ifndef AGREP_OS
+#define AGREP_OS "NATIVE LINUX"
+#endif
+
+
 #define AGREP_DATE	__DATE__
+
+#define AGREP_VERSION_STRING "AGREP "AGREP_VERSION" for "AGREP_OS" compiled with GCC "__VERSION__" ("__DATE__" "__TIME__"). Manber/Wu/Gries et al."

@@ -6,7 +6,16 @@
 #	Copyright (c) 1994 Sun Wu, Udi Manber, Burra Gopal.  All Rights Reserved.
 #
 
-CC		= gcc -ansi -O3
+# CC		= gcc -ansi -O3
+
+# for cross-compilation to Windows
+# see http://mxe.cc/#tutorial
+#
+# use
+# make CROSS=i686-pc-mingw32-
+
+CC=$(CROSS)gcc
+
 
 # ---------------------------------------------------------------------
 # Define HAVE_DIRENT_H to be 1 when you don't have <sys/dir.h>
@@ -76,12 +85,22 @@ OBJS	      =	follow.o	\
 		codepage.o	\
 		agrephlp.o
 
+ifeq ($(CROSS),i686-pc-mingw32-)
+
+$(PROG).exe:	$(OBJS) $(HDRS)
+		  $(CC) -o $(PROG).exe $(OBJS)
+
+else
+
 $(PROG):	$(OBJS) $(HDRS)
 		  $(CC) -o $(PROG) $(OBJS)
+
+endif
 
 clean:
 		rm -f *.o
 		rm -f $(PROG)
+		rm -f $(PROG).exe
 
 #	The header file config.h should be visible in the whole source code
 #	Apparently, it is not at the moment.	[TG] 28.09.96

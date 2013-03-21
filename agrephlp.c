@@ -1,8 +1,9 @@
 /*	AGREPHLP.C
 	module for giving some pages of on-line help information and examples.
 
+[chg] 20130321 TG AGREP home is http://www.tgries.de/agrep
 [chg]	TG 29.04.04 updated address info after almost 8  years
-[chg]	TG 17.02.96 AGREPs homepage is now http://www.geocities.com/SiliconValley/Lakes/4889
+[chg]	TG 17.02.96 AGREPs homepage is now http://www.geocities.com/SiliconValley/Lakes/4889 (dead)
 [ini]	TG 25.09.96
 
 */
@@ -101,14 +102,24 @@ void agrep_online_help(void)
 int		cpage, pg=1;
 unsigned int	userwants;
 
+
 PAGE1:
+
+/*
 #ifdef __EMX__ 
 fprintf(stderr,"\nAGREP %s for %s compiled with EMX 0.9c. Manber/Wu/Gries et al.(%s)\n",AGREP_VERSION,AGREP_OS,AGREP_DATE);
 #else
 #ifdef _WIN32
-fprintf(stderr,"\nAGREP %s for %s compiled with MS VC 5.0 (%s)\n",AGREP_VERSION,AGREP_OS,AGREP_DATE);
+fprintf(stderr,"\nAGREP %s for %s compiled with %s (%s)\n", AGREP_VERSION, AGREP_OS, myccc, AGREP_DATE );
 #endif
-#endif 
+#endif
+*/
+
+/*
+fprintf(stderr,"\nAGREP %s for %s compiled with %s (%s). Manber/Wu/Gries et al.\n", AGREP_VERSION, AGREP_OS, __VERSION__, AGREP_DATE );
+*/
+fprintf(stderr, "%s\n", AGREP_VERSION_STRING );
+
 fprintf(stderr,"\n           Approximate Pattern Matching GREP -- Get Regular Expression\n");
 fprintf(stderr,"Usage:");
 one_line_help();
