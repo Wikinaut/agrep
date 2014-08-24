@@ -118,6 +118,11 @@ extern int TCOMPRESSED;
 extern int EASYSEARCH;
 extern char FREQ_FILE[MAX_LINE_LEN], HASH_FILE[MAX_LINE_LEN], STRING_FILE[MAX_LINE_LEN];
 
+extern void alloc_buf(int fd, unsigned char **sbuf, int size);
+extern void free_buf(int fd, char *sbuf);
+extern unsigned char * backward_delimiter(unsigned char *end, unsigned char *begin, unsigned char *delim, int len, int outtail);
+extern unsigned char * forward_delimiter(unsigned char *begin, unsigned char *end, unsigned char *delim, int len, int outtail);
+
 #ifdef _WIN32
 int  fill_buf();          /* bitap.c */
 int  a_monkey();          /* sgrep.c */

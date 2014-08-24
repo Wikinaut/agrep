@@ -19,11 +19,11 @@
 #define Unexpected(s, c) 	(**s == NUL || **s == c)
 #define Invalid_range(x, y)	(x == NUL || x == '-' || x == ']' || x < y)
 
-extern Stack Push();
-extern Re_node Pop();
-extern Re_node Top();
-extern int Size();
-extern Pset pset_union();
+extern Stack Push(Stack *s, Re_node v);
+extern Re_node Pop(Stack *s);
+extern Re_node Top(Stack s);
+extern int Size(Stack s);
+extern Pset pset_union(Pset s1, Pset s2, int dontreplicate); 
 extern Pset create_pos();
 extern void free_re();
 
@@ -261,10 +261,10 @@ Stack *stk;
 	}
 	Nullable(r) = Nullable(Lchild(r)) && Nullable(Rchild(r));
 	if (Nullable(Lchild(r)))
-		Firstpos(r) = pset_union(Firstpos(Lchild(r)), Firstpos(Rchild(r)));
+		Firstpos(r) = pset_union(Firstpos(Lchild(r)), Firstpos(Rchild(r)), 0);
 	else Firstpos(r) = Firstpos(Lchild(r));
 	if (Nullable(Rchild(r)))
-		Lastpos(r) = pset_union(Lastpos(Lchild(r)), Lastpos(Rchild(r)));
+		Lastpos(r) = pset_union(Lastpos(Lchild(r)), Lastpos(Rchild(r)), 0);
 	else Lastpos(r) = Lastpos(Rchild(r));
 	return *stk;
 }
@@ -313,8 +313,8 @@ Re_node r;
 	Rchild(node) = r;
 	if (Push(s, node) == NULL) return NULL;
 	Nullable(node) = Nullable(Lchild(node)) || Nullable(Rchild(node));
-	Firstpos(node) = pset_union(Firstpos(Lchild(node)), Firstpos(Rchild(node)));
-	Lastpos(node) = pset_union(Lastpos(Lchild(node)), Lastpos(Rchild(node)));
+	Firstpos(node) = pset_union(Firstpos(Lchild(node)), Firstpos(Rchild(node)), 0);
+	Lastpos(node) = pset_union(Lastpos(Lchild(node)), Lastpos(Rchild(node)), 0);
 	return *s;
 }
 

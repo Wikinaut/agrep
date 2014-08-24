@@ -16,9 +16,9 @@
 
 #define TRUE	1
 
-extern Pset pset_union(); 
+extern Pset pset_union(Pset s1, Pset s2, int dontreplicate); 
 extern int pos_cnt;
-extern Re_node parse();
+extern Re_node parse(char *s);
 
 Re_lit_array lpos; 
 
@@ -155,7 +155,7 @@ Pset_array fpos;
 		pos = Lastpos(e);
 		while (pos != NULL) {
 			i = pos->posnum;
-			(*fpos)[i] = pset_union(Firstpos(e), (*fpos)[i]);
+			(*fpos)[i] = pset_union(Firstpos(e), (*fpos)[i], 0);
 			pos = pos->nextpos;
 		}
 		mk_followpos_1(Child(e), fpos);
@@ -164,7 +164,7 @@ Pset_array fpos;
 		pos = Lastpos(Lchild(e));
 		while (pos != NULL) {
 			i = pos->posnum;
-			(*fpos)[i] = pset_union(Firstpos(Rchild(e)), (*fpos)[i]);
+			(*fpos)[i] = pset_union(Firstpos(Rchild(e)), (*fpos)[i], 0);
 			pos = pos->nextpos;
 		}
 		mk_followpos_1(Lchild(e), fpos);

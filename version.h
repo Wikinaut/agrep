@@ -42,7 +42,7 @@
 
 */
 
-#define AGREP_VERSION	"3.412/TG"
+#define AGREP_VERSION	"3.41.3/TG"
 
 #ifdef __DOS
 #define AGREP_OS	"DOS"
