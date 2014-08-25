@@ -1,7 +1,9 @@
 /*
-[chg] 3.412 TG 20130321 makefile for Win32 for the MXE M Crosscompiler Environment http://mxe.cc
-[chg] 3.411 TG 20130216 small changes, help file, version, preparing for Github, makefile makefile.os2, CHANGES
-[fix] 3.40 TG 08.11.2004 option -By does not work together with -n. to allow this, I commented LINENUM out
+[chg] 3.41.4 	TG 20140825	fixed issue#3 -B option showed wrong number of Grand Total results
+				added function prototypes to make gcc compiler happy
+[chg] 3.412  	TG 20130321 makefile for Win32 for the MXE M Crosscompiler Environment http://mxe.cc
+[chg] 3.411  	TG 20130216 small changes, help file, version, preparing for Github, makefile makefile.os2, CHANGES
+[fix] 3.40  	TG 08.11.2004 option -By does not work together with -n. to allow this, I commented LINENUM out
 [fix]	3.35	TG 11.12.97	in agrep(): -f now working again
 				prepf() for multi-pattern was called
 				before the codepage LUT was prepared
@@ -42,7 +44,7 @@
 
 */
 
-#define AGREP_VERSION	"3.41.3/TG"
+#define AGREP_VERSION	"3.41.4/TG"
 
 #ifdef __DOS
 #define AGREP_OS	"DOS"
