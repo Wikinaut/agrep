@@ -484,7 +484,7 @@ unsigned char *buf;
 void
 alloc_buf(fd, buf, size)
 	int fd;
-	char **buf;
+	unsigned char **buf;
 	int size;
 {
 #if	AGREP_POINTER

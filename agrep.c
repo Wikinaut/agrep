@@ -3178,8 +3178,7 @@ void *output;
 			
 			if(!AParse &&  ((M = maskgen(Pattern, D)) == -1)) return -1;
 					
-		}
-		else {	/* sgrep too can handle delimiters */
+		} else {	/* sgrep too can handle delimiters */
 			if (DELIMITER) {
 				/* D_pattern is "<PAT>; ", D_length is 1 + length of string PAT: see agrep.c/'d' */
 				preprocess_delimiter(D_pattern+1, D_length - 1, D_pattern, &D_length);
@@ -3197,10 +3196,12 @@ void *output;
 	if (AParse)  {	/* boolean converted to multi-pattern search */
 		int prepf_ret= 0;
 		
-		if (pattern_has_changed)
+		if (pattern_has_changed) {
 			prepf_ret= prepf(-1, multibuf, multilen);
+		}
 			
 		if (prepf_ret  <= -1) {
+		  
 			if (AComplexBoolean) destroy_tree(AParse);
 			AParse = 0;
 			PAT_BUFFER = 0;
@@ -3209,6 +3210,7 @@ void *output;
 			
 			/* Cannot free multifd here since that is always allocated for multipattern search */
 			return -1;
+
 		}
 	}
 	
@@ -3216,12 +3218,17 @@ void *output;
 	if (NOFILENAME) FNAME = 0;
 	if (ALWAYSFILENAME) FNAME = ON;	/* used by glimpse ONLY: 15/dec/93 */
 
-	if (agrep_initialfd == -1) ret = exec(execfd, NULL);
+	if (agrep_initialfd == -1) {
+	  ret = exec(execfd, NULL);
+	} else if(RECURSIVE) {
+	    ret = ( recursive( Numfiles, Textfiles ) );
+	} else {
+	  ret = ( exec( execfd, Textfiles ) );
+	}
 	
-	else if(RECURSIVE) ret = (recursive(Numfiles, Textfiles));
-	else  ret = (exec(execfd, Textfiles));
-	
-	if (VERBOSE > 0) printf("Grand Total: %d match(es) found.\n",num_of_matched);
+	if ( VERBOSE > 0 ) {
+	  printf( "Grand Total: %d match(es) found.\n", num_of_matched );
+	}
 	
 	return ret;
 }
@@ -3573,21 +3580,27 @@ option -By does not work together with -n
 to allow this, I commented LINENUM out
 */
 		if(NOMATCH && BESTMATCH) {
+
 			if(WORDBOUND || WHOLELINE /* || LINENUM */ || INVERSE) {
 				SGREP = 0;
 				if(-1 == preprocess(D_pattern, Pattern)) return -1;
 				strcpy(old_D_pat, D_pattern);
 				if((M = maskgen(Pattern, D)) == -1) return -1;
 			}
+
 			COUNT=ON; 
 			D=1;
-			while(D<M && D<=MaxError && (num_of_matched - prev_num_of_matched == 0)) {
+
+			while( D<M && D<=MaxError && ( num_of_matched - prev_num_of_matched == 0 ) ) {
+			  
 				for (i = 0; i < Numfiles; i++, close(fd)) {
+				  
 					prev_num_of_matched = num_of_matched;
 					CurrentByteOffset = 0;
 					if (PRINTFILENUMBER) sprintf(CurrentFileName, "%d", i);
 					else strcpy(CurrentFileName, file_list[i]);
 					NEW_FILE = ON;
+					
 					if ((fd = open(Textfiles[i], O_RDONLY)) > 0) {
 						if(PAT_FILE || PAT_BUFFER) mgrep(fd, AParse);
 						else {
@@ -3596,11 +3609,16 @@ to allow this, I commented LINENUM out
 						}
 						if (ret <= -1) return -1;
 					}
+					
 					if (glimpse_clientdied) {
 						close(fd);
 						return -1;
 					}
-					if (agrep_finalfp != NULL) fflush(agrep_finalfp);
+					
+					if (agrep_finalfp != NULL) {
+					  fflush(agrep_finalfp);
+					}
+					
 					if ((((LIMITOUTPUT > 0) && (LIMITOUTPUT <= num_of_matched)) ||
 					     ((LIMITTOTALFILE > 0) && (LIMITTOTALFILE <= files_matched))) &&
 					    (num_of_matched > prev_num_of_matched)) {
@@ -3611,54 +3629,99 @@ to allow this, I commented LINENUM out
 				D++;
 			} /* while */
 
-			if(num_of_matched - prev_num_of_matched > 0) {
+			if ( num_of_matched - prev_num_of_matched > 0 ) {
+
 				D--; 
 				errno = D;	/* #of errors if proper return */
 				COUNT = 0;
 
-				if(num_of_matched - prev_num_of_matched == 1) fprintf(stderr,"%s: 1 word matches ", Progname);
-				else fprintf(stderr,"%s: %d words match ", Progname, num_of_matched - prev_num_of_matched);
-				if(D==1) fprintf(stderr, "within 1 error");
-				else fprintf(stderr, "within %d errors", D);
-
+				if ( num_of_matched - prev_num_of_matched == 1 ) {
+				  fprintf(stderr,"%s: 1 word matches within ", Progname);
+				} else {
+				  fprintf(stderr,"%s: %d words match within ", Progname, num_of_matched - prev_num_of_matched);
+				}
+				
+				if ( D == 1 ) {
+				  fprintf(stderr, "1 error");
+				} else {
+				  fprintf(stderr, "%d errors", D);
+				}
+				
 				fflush(stderr);
 
-				if(NOPROMPT) fprintf(stderr, "\n");
-				else {
-					if(num_of_matched - prev_num_of_matched == 1) fprintf(stderr,"; search for it? (y/n)");
-					else fprintf(stderr,"; search for them? (y/n)");
+				if(NOPROMPT) {
+				  fprintf(stderr, "\n");
+				} else {
+				  
+					if ( num_of_matched - prev_num_of_matched == 1 ) {
+					  fprintf(stderr,"; search for it? (y/n)");
+					} else {
+					  fprintf(stderr,"; search for them? (y/n)");
+					}
+					
 					c[0] = 'y';
-					if (!glimpse_isserver && (fgets(c, 4, stdin) == NULL)) goto CONT;
-					if(c[0] != 'y') goto CONT;
+					
+					if ( !glimpse_isserver && (fgets(c, 4, stdin) == NULL ) ) {
+					  goto CONT;
+					}
+					
+					if ( c[0] != 'y' ) {
+					  goto CONT;
+					}
 				}
-
+				
+				num_of_matched = 0;
+				
 				for (i = 0; i < Numfiles; i++, close(fd)) {
+				  
 					prev_num_of_matched = num_of_matched;
 					CurrentByteOffset = 0;
-					if (PRINTFILENUMBER) sprintf(CurrentFileName, "%d", i);
-					else strcpy(CurrentFileName, file_list[i]);
-					NEW_FILE = ON;
-					if ((fd = open(Textfiles[i], O_RDONLY)) > 0) {
-						if(PAT_FILE || PAT_BUFFER) mgrep(fd, AParse);
-						else {
-							if(SGREP) ret = sgrep(OldPattern,strlen(OldPattern),fd,D, i);
-							else ret = bitap(old_D_pat,Pattern,fd,M,D);
-						}
-						if (ret <= -1) {
-							close(fd);
-							return -1;
-						}
+				
+					if (PRINTFILENUMBER) {
+					  sprintf(CurrentFileName, "%d", i);
+					} else {
+					  strcpy(CurrentFileName, file_list[i]);
 					}
+					
+					NEW_FILE = ON;
+					
+					if ( ( fd = open(Textfiles[i], O_RDONLY ) ) > 0 ) {
+
+					  if(PAT_FILE || PAT_BUFFER) {
+						  
+					    mgrep( fd, AParse );
+						  
+					  } else {
+					    
+					    if ( SGREP ) {
+					      ret = sgrep( OldPattern, strlen(OldPattern), fd, D, i );
+					    } else {
+					      ret = bitap( old_D_pat, Pattern, fd, M, D );
+					    }
+				
+					  }
+						
+					  if (ret <= -1) {
+					    close(fd);
+					    return -1;
+					  }
+					}
+					
 					if (glimpse_clientdied) {
 						close(fd);
 						return -1;
 					}
-					if (agrep_finalfp != NULL) fflush(agrep_finalfp);
-					if (((LIMITOUTPUT > 0) && (LIMITOUTPUT <= num_of_matched)) ||
-					    ((LIMITTOTALFILE > 0) && (LIMITTOTALFILE <= files_matched))) {
-						close(fd);
-						break;	/* done */
+					
+					if (agrep_finalfp != NULL) {
+					  fflush(agrep_finalfp);
 					}
+					
+					if (((LIMITOUTPUT > 0) && (LIMITOUTPUT <= num_of_matched )) ||
+					    ((LIMITTOTALFILE > 0) && (LIMITTOTALFILE <= files_matched))) {
+					  close(fd);
+					  break;	/* done */
+					}
+					
 				}  /* for i < Numfiles */
 				NOMATCH = 0;
 			}
@@ -3666,18 +3729,25 @@ to allow this, I commented LINENUM out
 	}
 CONT:
 	if(EATFIRST) {
-		if (agrep_finalfp != NULL) fprintf(agrep_finalfp, "\n");
-		else if (agrep_outpointer >= agrep_outlen) {
+		if (agrep_finalfp != NULL) {
+		  fprintf(agrep_finalfp, "\n");
+		} else if (agrep_outpointer >= agrep_outlen) {
 			OUTPUT_OVERFLOW;
 			return -1;
+		} else {
+		  agrep_outbuffer[agrep_outpointer++] = '\n';
 		}
-		else agrep_outbuffer[agrep_outpointer++] = '\n';
 		EATFIRST = OFF;
 	}
-	if(num_of_matched - prev_num_of_matched > 0) NOMATCH = OFF;
+	
+	if ( num_of_matched - prev_num_of_matched > 0 ) {
+	  NOMATCH = OFF;
+	}
+
 	/* if(NOMATCH) return(0); */
 	/*printf("exec=%d\n", num_of_matched);*/
-	return(num_of_matched);
+
+	return( num_of_matched );
 
 } /* end of exec() */
 

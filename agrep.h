@@ -129,13 +129,15 @@ extern unsigned char metasymb[16];
 /* not a comment anylonger [TG] 16.09.96 */
 #define OUTPUT_OVERFLOW	fprintf(stderr, "Output buffer overflow after %d bytes @ %s:%d !!\n", agrep_outpointer, __FILE__, __LINE__)
 
-extern unsigned char *forward_delimiter(), *backward_delimiter();
-extern int exists_delimiter();
-extern void preprocess_delimiter();
-unsigned char *forward_delimiter(), *backward_delimiter();
+extern int exists_delimiter(unsigned char *begin, unsigned char *end, unsigned char *delim, int len);
+extern void preprocess_delimiter(unsigned char *src, int srclen, unsigned char *dest, int *pdestlen);
+extern unsigned char * backward_delimiter(unsigned char *end, unsigned char *begin, unsigned char *delim, int len, int outtail);
+extern unsigned char * forward_delimiter(unsigned char *begin, unsigned char *end, unsigned char *delim, int len, int outtail);
+
 int exists_tcompressed_word();
 unsigned char * forward_tcompressed_word(), *backward_tcompressed_word();
-void alloc_buf(), free_buf();
+extern void alloc_buf(int fd, unsigned char **sbuf, int size);
+extern void free_buf(int fd, char *sbuf);
 
 
 /* To parse patterns in asplit.c */

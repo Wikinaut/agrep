@@ -117,7 +117,7 @@ int num_pat;
 extern char  amatched_terminals[MAXNUM_PAT]; /* which patterns have been matched in the current line? Used only with AParse != 0, so max_num is not needed */
 extern int anum_terminals;
 extern int AComplexBoolean;
-static void countline();
+static void countline(unsigned char *text, int len);
 
 #ifdef _WIN32
 int  eval_tree();         /* asplit.c */
