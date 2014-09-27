@@ -6,6 +6,12 @@ Fast searching files for a string or regular expression, with approximate matchi
 
 Developed 1989-1991 by Udi Manber, Sun Wu et al. at the University of Arizona.
 
+For Glimpse and WebGlimpse - AGREP is an essential part of them - see
+
+* https://github.com/gvelez17/glimpse
+* https://github.com/gvelez17/webglimpse
+
+
 Usage
 =====
 
@@ -44,7 +50,8 @@ AGREP [-#cdehi[a|#]klnprstvwxyABDGIRS] [-f patternfile] [-H dir] pattern [files]
 Branches
 ========
 
-The present repository contains three different branches.
+The present repository contains three different branches:
+
 * **master**: agrep based on agrep 3.0, ported to OS/2, DOS and Windows in the 90ies, and backported to LINUX (the present version you are visiting)
 * **agrep3.0-as-found-in-glimpse4.18.6-20130216**: agrep 3.0 as it was found in the glimpse software
 * **agrep2.04**: the first published and original agrep version
@@ -66,8 +73,8 @@ Algorithms
 * [Wu, S., Manber, U.: "Agrep - A Fast Approximate Pattern-Matching Tool", 1992.](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.48.8488)
 * [Wu, S., Manber, U.: "Fast Text Searching With Errors", 1991.](http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.20.8854)
 * see [agrep.algorithms](https://github.com/Wikinaut/agrep/blob/master/agrep.algorithms)
-* see [/docs](https://github.com/Wikinaut/agrep/blob/master/docs)
-* see [readme](https://github.com/Wikinaut/agrep/blob/master/readme)
+* see [docs](https://github.com/Wikinaut/agrep/blob/master/docs)
+* see [readme](https://github.com/Wikinaut/agrep/blob/master/docs/README)
 
 
 COPYRIGHT
@@ -75,27 +82,35 @@ COPYRIGHT
 
 * see [COPYRIGHT](https://github.com/Wikinaut/agrep/blob/master/COPYRIGHT)
 
-This material was developed by Sun Wu, Udi Manber and Burra Gopal
-at the University of Arizona, Department of Computer Science.
-Permission is granted to copy this software, to redistribute it
-on a nonprofit basis, and to use it for any purpose, subject to
-the following restrictions and understandings.
 
-1. Any copy made of this software must include this copyright notice
-in full.
+As of Sept 18, 2014, Webglimpse, Glimpse and Agrep are available under
+the ISC open source license, thanks to the
+University of Arizona Office of Technology Transfer and all the developers,
+who were more than happy to release it.
 
-2. All materials developed as a consequence of the use of this
-software shall duly acknowledge such use, in accordance with the usual
-standards of acknowledging credit in academic research.
+Sources:
+http://webglimpse.net/sublicensing/licensing.html
+http://opensource.org/licenses/ISC
 
-3. The authors have made no warranty or representation that the
-operation of this software will be error-free or suitable for any
-application, and they are under under no obligation to provide any
-services, by way of maintenance, update, or otherwise. The software
-is an experimental prototype offered on an as-is basis.
+Anyone distributing the AGREP code should include the following license
+which is applicable since September 2014:
 
-4. Redistribution for profit requires the express, written permission
-of the authors.
+Copyright 1996, Arizona Board of Regents
+on behalf of The University of Arizona.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted, provided that the above
+copyright notice and this permission notice appear in all copies.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF
+MERCHANTABILITY AND FITNESS. 
+
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT,
+OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE,
+DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER
+TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE
+OF THIS SOFTWARE.
 
 
 Contributors
