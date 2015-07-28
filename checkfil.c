@@ -16,6 +16,10 @@
 #include <errno.h>
 #include "checkfil.h"
 
+#ifdef _OSX
+#include <sys/stat.h>
+#endif
+
 #ifdef _WIN32
 #include <sys/stat.h>
 #include "config.h"
