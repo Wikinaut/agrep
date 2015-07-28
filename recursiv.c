@@ -27,13 +27,6 @@
 #include <locale.h>
 #endif
 
-#ifdef _OSX
-#include <sys/stat.h>
-#include <string.h>
-#include <dirent.h>
-#define HAVE_DIRENT_H 1
-#endif
-
 #if HAVE_DIRENT_H
 
 #ifndef _WIN32

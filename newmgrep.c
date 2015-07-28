@@ -16,10 +16,6 @@
 #include <sys/types.h>
 #endif
 
-#ifdef _OSX
-#include <sys/stat.h>
-#endif
-
 #ifdef _WIN32
 #include <sys/stat.h>
 #endif
