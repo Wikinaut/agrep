@@ -22,7 +22,7 @@ unsigned char *buf;
 	else return 0;	/* should not call this function if buf is a pointer to a user-specified region! */
 #else	/*AGREP_POINTER*/
 	else {	/* simulate a file */
-		total_read = (record_size > (agrep_inlen - agrep_inpointer)) ? (agrep_len - agrep_inpointer) : record_size;
+		total_read = (record_size > (agrep_inlen - agrep_inpointer)) ? (agrep_inlen - agrep_inpointer) : record_size;
 		memcpy(buf, agrep_inbuffer + agrep_inpointer, total_read);
 		agrep_inpointer += total_read;
 	}
