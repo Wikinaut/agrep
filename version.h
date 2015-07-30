@@ -1,4 +1,5 @@
 /*
+[chg] 3.41.5                    fixed undefined variable agrep_len
 [chg] 3.41.4 	TG 20140825	fixed issue#3 -B option showed wrong number of Grand Total results
 				added function prototypes to make gcc compiler happy
 [chg] 3.412  	TG 20130321 makefile for Win32 for the MXE M Crosscompiler Environment http://mxe.cc
@@ -44,7 +45,7 @@
 
 */
 
-#define AGREP_VERSION	"3.41.4/TG"
+#define AGREP_VERSION	"3.41.5/TG"
 
 #ifdef __DOS
 #define AGREP_OS	"DOS"
