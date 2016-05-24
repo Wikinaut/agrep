@@ -62,9 +62,7 @@
 int  exec();    /* agrep.c */
 #endif
 
-/*
- * #include <sys/stat.h>
- */
+#include <sys/stat.h>
 #include <fcntl.h>
 #define BUFSIZE 256
 #define DIRSIZE 14
