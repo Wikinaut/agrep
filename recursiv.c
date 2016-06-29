@@ -53,6 +53,10 @@
 
 #endif
 
+#ifdef __APPLE__
+    #include <sys/stat.h>
+#endif
+
 #ifdef _WIN32
 #include "config.h"
 #include <string.h>
