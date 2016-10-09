@@ -16,8 +16,8 @@
 #include <sys/types.h>
 #endif
 
-#ifdef _WIN32
-#include <sys/stat.h>
+#if defined(_WIN32) || defined(__APPLE__)
+    #include <sys/stat.h>
 #endif
 
 #include "agrep.h"

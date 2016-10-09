@@ -10,9 +10,9 @@
 #include <ctype.h>
 #include <fcntl.h>
 #include <sys/types.h>
-/*
-#include <sys/stat.h>
-*/
+#ifdef __APPLE__
+    #include <sys/stat.h>
+#endif
 #include <errno.h>
 #include "checkfil.h"
 
