@@ -238,29 +238,28 @@ userw;
 
 PAGE5:
 one_line_help();
-fprintf(stderr,"\n   AGREP (C) COPYRIGHT\n\n");
-
-fprintf(stderr,"   Glimpse was developed by Udi Manber and Burra Gopal of the University of\n");
-fprintf(stderr,"   Arizona, and Sun Wu of the National Chung-Cheng University, Taiwan.\n");
-fprintf(stderr,"   Permission is granted to copy this software, to redistribute it\n");
-fprintf(stderr,"   on a nonprofit basis, and to use it for any purpose, subject to\n");
-fprintf(stderr,"   the following restrictions and understandings.\n\n");
-
-fprintf(stderr,"1. Any copy made of this software must include this copyright notice in full.\n\n");
-
-fprintf(stderr,"2. All materials developed as a consequence of the use of this\n");
-fprintf(stderr,"   software shall duly acknowledge such use, in accordance with the usual\n");
-fprintf(stderr,"   standards of acknowledging credit in academic research.\n\n");
-
-fprintf(stderr,"3. The authors have made no warranty or representation that the\n");
-fprintf(stderr,"   operation of this software will be error-free or suitable for any\n");
-fprintf(stderr,"   application, and they are under under no obligation to provide any\n");
-fprintf(stderr,"   services, by way of maintenance, update, or otherwise.  The software\n");
-fprintf(stderr,"   is an experimental prototype offered on an as-is basis.\n\n");
-
-fprintf(stderr,"4. Redistribution for profit requires the express, written permission\n");
-fprintf(stderr,"   of the authors.  Non-exclusive licenses can be obtained for a small fee.\n");
-fprintf(stderr,"   Contact the authors at glimpse@cs.arizona.edu.\n\n");
+fprintf(stderr,"\n\
+As of Sept 18, 2014, Webglimpse and Glimpse (AGREP is a part of it)\n\
+are available under the ISC open source license, thanks to the\n\
+University of Arizona Office of Technology Transfer and all the developers,\n\
+who were more than happy to release it. http://opensource.org/licenses/ISC\n\
+===============================================================================\n\
+Copyright 1996, Arizona Board of Regents on behalf of The University of Arizona.\n\
+\n\
+Permission to use, copy, modify, and/or distribute this software for any\n\
+purpose with or without fee is hereby granted, provided that the above\n\
+copyright notice and this permission notice appear in all copies.\n\
+\n\
+THE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL WARRANTIES\n\
+WITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF\n\
+MERCHANTABILITY AND FITNESS.\n\
+\n\
+IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT, INDIRECT,\n\
+OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM LOSS OF USE,\n\
+DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR OTHER\n\
+TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR PERFORMANCE\n\
+OF THIS SOFTWARE.\n\
+===============================================================================\n\n");
 fprintf(stderr,"                                                                      1234<5>6Q");
 
 userw;
