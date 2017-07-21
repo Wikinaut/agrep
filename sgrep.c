@@ -1120,7 +1120,9 @@ register CHARTYPE *text, *textend, *pat, *oldpat;
 	CHARTYPE *lastout = text;
 	int newlen;
 
-	Candidate[0][0] = Candidate[0][1] = 0; 
+	Candidate[0][0] = 0;
+	Candidate[0][1] = 0;
+	Candidate[1][0] = 0;
 	d1 = shift_1;
 	cdx = 0;
 	if(m < 3) r1 = m;
