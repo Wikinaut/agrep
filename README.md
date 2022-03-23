@@ -133,7 +133,7 @@ Alternatives to AGREP
 * AGREPY: Python port of agrep string matching with errors
 * The bitap library , another new and fresh implementation of the bitap algorithm. Windows - C - Cygwin
 * PERL module String:Approx. Perl extension for approximate matching (fuzzy matching) by Jarkko Hietaniemi, Finland
-
+* ugrep https://github.com/Genivia/ugrep
 
 Further stuff with the same name (agrep)
 ========================================
