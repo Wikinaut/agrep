@@ -65,13 +65,13 @@ extern int NEW_FILE, POST_FILTER;
 
 #ifdef _WIN32
 #include <io.h>
+#endif
 int  output();            /* agrep.c */
 int  re();                /* agrep.c */
 int  re1();               /* agrep.c */
 int  asearch();           /* asearch.c */
 int  asearch1();          /* asearch1.c */
 int  fill_buf();          /* bitap.c */
-#endif
 
 /* bitap dispatches job */
 
@@ -447,6 +447,7 @@ int fd, M, D;
 #endif	/*AGREP_POINTER*/
 }
 
+int
 fill_buf(fd, buf, record_size)
 int fd, record_size; 
 unsigned char *buf;

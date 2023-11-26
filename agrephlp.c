@@ -10,8 +10,8 @@
 
 #ifdef _WIN32
 #include "conio.h"
-int get_current_codepage();  /* codepage.c */
 #endif
+int get_current_codepage();  /* codepage.c */
 
 #define	CUL	0x4B00
 #define CUP	0x4800
@@ -65,8 +65,8 @@ int get_current_codepage();  /* codepage.c */
 #include "agrep.h"
 #include "version.h"
 
-extern	AGREPOPT_STR[MAX_LINE_LEN];
-extern	VERBOSE;
+extern char AGREPOPT_STR[MAX_LINE_LEN];
+extern int VERBOSE;
 
 #ifdef __EMX__
 extern	unsigned int _emx_env;

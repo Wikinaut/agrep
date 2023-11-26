@@ -97,7 +97,7 @@ extern int CONSTANT, COUNT, FNAME, SILENT, FILENAMEONLY, prev_num_of_matched, nu
 extern int DNA ;	/* DNA flag is set in checksg when pattern is DNA pattern
 			   and p_size > 16  */
 
-extern WORDBOUND, WHOLELINE, NOUPPER;
+extern int WORDBOUND, WHOLELINE, NOUPPER;
 extern unsigned char CurrentFileName[],  Progname[]; 
 extern unsigned Mask[];
 extern unsigned endposition;
@@ -123,7 +123,6 @@ extern void free_buf(int fd, char *sbuf);
 extern unsigned char * backward_delimiter(unsigned char *end, unsigned char *begin, unsigned char *delim, int len, int outtail);
 extern unsigned char * forward_delimiter(unsigned char *begin, unsigned char *end, unsigned char *delim, int len, int outtail);
 
-#ifdef _WIN32
 int  fill_buf();          /* bitap.c */
 int  a_monkey();          /* sgrep.c */
 int  agrep();             /* sgrep.c */
@@ -133,7 +132,6 @@ int  monkey();            /* sgrep.c */
 int  monkey4();           /* sgrep.c */
 int  s_output();          /* sgrep.c */
 int  verify();            /* sgrep.c */
-#endif
 
 #if	MEASURE_TIMES
 /* timing variables */
@@ -262,7 +260,7 @@ int *m;
 int sgrep(in_pat, in_m, fd, D, samepattern)
 
 CHARTYPE *in_pat;  
-int fd, in_m, D;
+int fd, in_m, D, samepattern;
 {
 	CHARTYPE patbuf[MAXLINE];
 	CHARTYPE *pat = patbuf;
@@ -1485,7 +1483,7 @@ CHARTYPE **lastout;	/* in, out */
 static void
 prep_bm(Pattern, m)      
 unsigned char *Pattern;
-register m;
+register int m;
 {
 	int i;
 	unsigned hash;

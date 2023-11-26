@@ -222,6 +222,7 @@ CHAR *agrep_saved_pattern = NULL;	/* to prevent multiple prepfs for each boolean
 #ifdef _WIN32
 #include <direct.h>
 #include <io.h>
+#endif
 int  agrep_usage();       /* agrep.c */
 int  exec();              /* agrep.c */
 int  exponen();           /* agrep.c */
@@ -244,7 +245,6 @@ int  sgrep();             /* sgrep.c */
 int  initialize_common(); /* dummyfil.c */
 int  tuncompressible_filename();   /* dummyfil.c */
 int  quick_tcompress();   /* dummyfil.c */
-#endif
 
 /* Called when multipattern search and pattern has not changed */
 

@@ -6,10 +6,10 @@
 
 #ifdef _WIN32
 #include <memory.h>
-#include <stdlib.h>
 #endif
 
 #include <stdio.h>
+#include <stdlib.h>
 #include "re.h"
 
 #define FALSE	0

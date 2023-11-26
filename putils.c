@@ -68,6 +68,7 @@ get_token_bool(buffer, len, ptr, tokenbuf, tokenlen)
 void
 print_tree(t, level)
 	ParseTree *t;
+	int level;
 {
 	int	i;
 

@@ -4,6 +4,9 @@
 					allows the fully ISO-Charset.
 */
 
+#include <stdlib.h>
+#include <string.h>
+
 /*************************************************************
  *							     *
  * 	Macros defining special characters.		     *
@@ -72,8 +75,6 @@
 
 #define new_node(type, l, x)	\
 {\
-	extern void *malloc();\
-\
 	(l) = (type) malloc(sizeof(*(x)));\
 	if ((l) == NULL) {\
 		fprintf(stderr, "malloc failure in new_node\n");\

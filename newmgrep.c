@@ -70,14 +70,14 @@ extern CHAR D_pattern[MaxDelimit*2];
 extern int D_length;
 extern CHAR tc_D_pattern[MaxDelimit*2];
 extern int tc_D_length;
-extern COUNT, FNAME, SILENT, FILENAMEONLY, prev_num_of_matched, num_of_matched;
-extern INVERSE, OUTTAIL;
-extern WORDBOUND, WHOLELINE, NOUPPER;
+extern int COUNT, FNAME, SILENT, FILENAMEONLY, prev_num_of_matched, num_of_matched;
+extern int INVERSE, OUTTAIL;
+extern int WORDBOUND, WHOLELINE, NOUPPER;
 extern ParseTree *AParse;
 extern int AComplexPattern;
 extern unsigned char  CurrentFileName[], Progname[]; 
-extern total_line;
-extern agrep_initialfd;
+extern int total_line;
+extern int agrep_initialfd;
 extern int EXITONERROR;
 extern int PRINTPATTERN;
 extern int agrep_inlen;
@@ -119,12 +119,10 @@ extern int anum_terminals;
 extern int AComplexBoolean;
 static void countline(unsigned char *text, int len);
 
-#ifdef _WIN32
 int  eval_tree();         /* asplit.c */
 int  fill_buf();          /* bitap.c */
 int  monkey1();           /* newmgrep.c */
 int  m_short();           /* newmgrep.c */
-#endif
 
 #if	DOTCOMPRESSED
 /* Equivalent variables for compression search */
