@@ -149,7 +149,7 @@ userw;
 PAGE2:
 one_line_help();
 fprintf(stderr,"\nThe pattern MUST BE ENCLOSED in \"DOUBLE QUOTES\" if it contains one of the\n");
-fprintf(stderr,"following METASYMBOLS. Good practice is always to include it in double quotes.\n\n");
+fprintf(stderr,"following METASYMBOLS. Good practice is always to enclose it in double quotes.\n\n");
 
 fprintf(stderr,"METASYMBOLS:\n");
 fprintf(stderr,"\\z          turns off any special meaning of character z (\\# matches #)\n");
