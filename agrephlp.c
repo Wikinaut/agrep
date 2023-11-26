@@ -140,7 +140,7 @@ fprintf(stderr,"-r  recurse subdirectories (UNIX style)    -s  silent\n");
 fprintf(stderr,"-t  for use when delimiter is at the end of records\n");
 fprintf(stderr,"-v  output those records without matches   -V[012345V] version / verbose more\n");
 fprintf(stderr,"-w  pattern has to match as a word: \"win\" will not match \"wind\"\n");
-fprintf(stderr,"-u  unterdruecke record output             -x  pattern must match a whole line\n");
+fprintf(stderr,"-u  suppress record output                 -x  pattern must match a whole line\n");
 fprintf(stderr,"-y  suppresses the prompt when used with -B best match option\n");
 fprintf(stderr,"@listfile  use the filenames in listfile                              <1>23456Q");
 
