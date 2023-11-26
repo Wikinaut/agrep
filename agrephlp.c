@@ -134,7 +134,7 @@ fprintf(stderr,"-i  case-insensitive search; ISO <> ASCII  -ia ISO chars mapped 
 fprintf(stderr,"-i# digits-match-digits, letters-letters   -i0 case-sensitive search\n");
 fprintf(stderr,"-k  treat pattern literally - no meta-characters\n");
 fprintf(stderr,"-l  output the names of files that contain a match\n");
-fprintf(stderr,"-n  print line numbers of matches  -q print buffer byte offsets\n");
+fprintf(stderr,"-n  print line numbers of matches          -q  print buffer byte offsets\n");
 fprintf(stderr,"-p  supersequence search                   -CP 850|437 set codepage\n");
 fprintf(stderr,"-r  recurse subdirectories (UNIX style)    -s silent\n");
 fprintf(stderr,"-t  for use when delimiter is at the end of records\n");

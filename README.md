@@ -36,7 +36,7 @@ AGREP [-#cdehi[a|#]klnprstvwxyABDGIRS] [-f patternfile] [-H dir] pattern [files]
 -i# digits-match-digits, letters-letters   -i0 case-sensitive search
 -k  treat pattern literally - no meta-characters
 -l  output the names of files that contain a match
--n  print line numbers of matches  -q print buffer byte offsets
+-n  print line numbers of matches          -q  print buffer byte offsets
 -p  supersequence search                   -CP 850|437 set codepage
 -r  recurse subdirectories (UNIX style)    -s silent
 -t  for use when delimiter is at the end of records
