@@ -105,19 +105,6 @@ unsigned int	userwants;
 
 PAGE1:
 
-/*
-#ifdef __EMX__ 
-fprintf(stderr,"\nAGREP %s for %s compiled with EMX 0.9c. Manber/Wu/Gries et al.(%s)\n",AGREP_VERSION,AGREP_OS,AGREP_DATE);
-#else
-#ifdef _WIN32
-fprintf(stderr,"\nAGREP %s for %s compiled with %s (%s)\n", AGREP_VERSION, AGREP_OS, myccc, AGREP_DATE );
-#endif
-#endif
-*/
-
-/*
-fprintf(stderr,"\nAGREP %s for %s compiled with %s (%s). Manber/Wu/Gries et al.\n", AGREP_VERSION, AGREP_OS, __VERSION__, AGREP_DATE );
-*/
 fprintf(stderr, "%s\n", AGREP_VERSION_STRING );
 
 fprintf(stderr,"\n           Approximate Pattern Matching GREP -- Get Regular Expression\n");
@@ -275,7 +262,7 @@ fprintf(stderr,"AGREP is the search engine and part of the GLIMPSE tool for sear
 fprintf(stderr,"indexing whole file systems. GLIMPSE stands for GLobal IMPlicit SEarch and is\n");
 fprintf(stderr,"part of the HARVEST Information Discovery and Access System.");
 
-fprintf(stderr,"\n\nAGREP as of %s:\n",AGREP_DATE);
+fprintf(stderr,"\n\n%s\n",AGREP_VERSION_STRING);
 fprintf(stderr,"===============================================\n");
 fprintf(stderr,"The home page for AGREP and GLIMPSE in general            http://webglimpse.net\n");
 fprintf(stderr,"Home page AGREP                                      http://www.tgries.de/agrep\n\n");
