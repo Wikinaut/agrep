@@ -119,12 +119,10 @@ extern int anum_terminals;
 extern int AComplexBoolean;
 static void countline(unsigned char *text, int len);
 
-#ifdef _WIN32
 int  eval_tree();         /* asplit.c */
 int  fill_buf();          /* bitap.c */
 int  monkey1();           /* newmgrep.c */
 int  m_short();           /* newmgrep.c */
-#endif
 
 #if	DOTCOMPRESSED
 /* Equivalent variables for compression search */

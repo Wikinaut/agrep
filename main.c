@@ -20,9 +20,7 @@ extern  int EXITONERROR;
 extern unsigned int _emx_env;	/* this variable denotes the operating system DOS, OS/2 */
 #endif
 
-#ifdef _WIN32
 int fileagrep();   /* agrep.c */
-#endif
 
 #ifndef _WIN32
 int

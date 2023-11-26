@@ -123,7 +123,6 @@ extern void free_buf(int fd, char *sbuf);
 extern unsigned char * backward_delimiter(unsigned char *end, unsigned char *begin, unsigned char *delim, int len, int outtail);
 extern unsigned char * forward_delimiter(unsigned char *begin, unsigned char *end, unsigned char *delim, int len, int outtail);
 
-#ifdef _WIN32
 int  fill_buf();          /* bitap.c */
 int  a_monkey();          /* sgrep.c */
 int  agrep();             /* sgrep.c */
@@ -133,7 +132,6 @@ int  monkey();            /* sgrep.c */
 int  monkey4();           /* sgrep.c */
 int  s_output();          /* sgrep.c */
 int  verify();            /* sgrep.c */
-#endif
 
 #if	MEASURE_TIMES
 /* timing variables */

@@ -20,10 +20,8 @@ extern int NEW_FILE, POST_FILTER;
 
 extern int LIMITOUTPUT, LIMITPERFILE;
 
-#ifdef _WIN32
 int  output();            /* agrep.c */
 int  fill_buf();          /* bitap.c */
-#endif
 
 int
 asearch1(old_D_pat, Text, D)

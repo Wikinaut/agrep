@@ -42,13 +42,11 @@ extern ParseTree aterminals[MAXNUM_PAT];
 extern char FREQ_FILE[MAX_LINE_LEN], HASH_FILE[MAX_LINE_LEN], STRING_FILE[MAX_LINE_LEN];	/* interfacing with tcompress */
 extern int AComplexBoolean;
 
-#ifdef _WIN32
 int  asplit_pattern();       /* asplit.c */
 int  asplit_terminal();      /* asplit.c */
 int  init();                 /* follow.c */
 void destroy_tree();         /* putils.c */
 int  quick_tcompress();      /* preproce.c */
-#endif
 
 int
 preprocess(D_pattern, Pattern)   /* need two parameters  */

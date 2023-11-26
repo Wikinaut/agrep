@@ -10,8 +10,8 @@
 
 #ifdef _WIN32
 #include "conio.h"
-int get_current_codepage();  /* codepage.c */
 #endif
+int get_current_codepage();  /* codepage.c */
 
 #define	CUL	0x4B00
 #define CUP	0x4800

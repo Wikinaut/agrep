@@ -2,14 +2,15 @@
 /* this file contains various utility functions for accessing
    and manipulating regular expression syntax trees.	*/
 
-#include <stdio.h>
 #include <ctype.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 #include "re.h"
 
 #ifdef _WIN32
 #include <malloc.h>
 #include <process.h>
-#include <string.h>
 #endif
 
 /************************************************************************/
