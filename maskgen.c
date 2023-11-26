@@ -225,7 +225,7 @@ int D;
 	Init[0] = Init[0] | endposition;
 	
 	/* not necessary for INit[i], i>0, */
-	/* but at every begining of the matching process append one
+	/* but at every beginning of the matching process append one
 	   no-match character to initialize the error vectors */
 	   
 	endposition = ( endposition << 1 ) + 1;

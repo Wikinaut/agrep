@@ -153,7 +153,7 @@ fprintf(stderr,"following METASYMBOLS. Good practice is always to enclose it in 
 
 fprintf(stderr,"METASYMBOLS:\n");
 fprintf(stderr,"\\z          turns off any special meaning of character z (\\# matches #)\n");
-fprintf(stderr,"^           begin-of-line symbol\n");
+fprintf(stderr,"^           beginning-of-line symbol\n");
 fprintf(stderr,"$           end-of-line symbol\n");
 fprintf(stderr,".           matches any single character (except newline)\n");
 fprintf(stderr,"#           matches any number > 0 of arbitrary characters\n");
