@@ -579,7 +579,7 @@ int Text, M, D;
 					}
 					r3 = Init0;
 					r2 = ((Next[r3>>hh] | Next1[r3&LL]) & CMask) | Init0;
-					/* match begin of line */
+					/* match beginning of line */
 					if (DELIMITER) CurrentByteOffset += 1*D_length;
 					else CurrentByteOffset += 1*1;
 				}
@@ -636,7 +636,7 @@ int Text, M, D;
 					}
 					r2 = Init0;
 					r3 = ((Next[r2>>hh] | Next1[r2&LL]) & CMask) | Init0;
-					/* match begin of line */
+					/* match beginning of line */
 					if (DELIMITER) CurrentByteOffset += 1*D_length;
 					else CurrentByteOffset += 1*1;
 				}
@@ -714,7 +714,7 @@ int Text, M, D;
 					}
 					r3 = Init0;
 					r2 = ((Next[r3>>hh] | Next1[r3&LL]) & CMask) | Init0;
-					/* match begin of line */
+					/* match beginning of line */
 					if (DELIMITER) CurrentByteOffset += 1*D_length;
 					else CurrentByteOffset += 1*1;
 				}
@@ -771,7 +771,7 @@ int Text, M, D;
 					}
 					r2 = Init0;
 					r3 = ((Next[r2>>hh] | Next1[r2&LL]) & CMask) | Init0;
-					/* match begin of line */
+					/* match beginning of line */
 					if (DELIMITER) CurrentByteOffset += 1*D_length;
 					else CurrentByteOffset += 1*1;
 				}

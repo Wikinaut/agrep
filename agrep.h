@@ -79,7 +79,7 @@
 #define STAR      145   /* closure */
 #define HYPHEN    129   /* - */
 #define NOCARE    130   /* . */
-#define NNLINE    131   /* special symbol for newline in begin of pattern*/
+#define NNLINE    131   /* special symbol for newline in beginning of pattern */
 					   /* matches '\n' and NNLINE */
 #define USERRANGE_MIN 128 	/* min char in pattern of user: give warning */
 #define USERRANGE_MAX 145	/* max char in pattern of user: give warning */
@@ -117,7 +117,7 @@ extern unsigned char metasymb[16];
 #define STAR      metasymb[12]	/* * closure */
 #define HYPHEN    metasymb[13]	/* - */
 #define NOCARE    metasymb[14]	/* . */
-#define NNLINE    metasymb[15]	/* special symbol for newline in begin of pattern*/
+#define NNLINE    metasymb[15]	/* special symbol for newline in beginning of pattern */
 				/* matches '\n' and NNLINE */
 
 /* not used anymore: [TG] */			

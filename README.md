@@ -36,14 +36,14 @@ AGREP [-#cdehi[a|#]klnprstvwxyABDGIRS] [-f patternfile] [-H dir] pattern [files]
 -i# digits-match-digits, letters-letters   -i0 case-sensitive search
 -k  treat pattern literally - no meta-characters
 -l  output the names of files that contain a match
--n  print line numbers of matches  -q print buffer byte offsets
+-n  print line numbers of matches          -q  print buffer byte offsets
 -p  supersequence search                   -CP 850|437 set codepage
--r  recurse subdirectories (UNIX style)    -s silent
+-r  recurse subdirectories (UNIX style)    -s  silent
 -t  for use when delimiter is at the end of records
 -v  output those records without matches   -V[012345V] version / verbose more
 -w  pattern has to match as a word: "win" will not match "wind"
--u  unterdruecke record output             -x  pattern must match a whole line
--y  suppresses the prompt when used with -B best match option
+-u  suppress record output                 -x  pattern must match a whole line
+-y  suppress the prompt when used with -B best match option
 @listfile  use the filenames in listfile                              <1>23456Q
 ```
 

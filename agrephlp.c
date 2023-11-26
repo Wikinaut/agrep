@@ -134,14 +134,14 @@ fprintf(stderr,"-i  case-insensitive search; ISO <> ASCII  -ia ISO chars mapped 
 fprintf(stderr,"-i# digits-match-digits, letters-letters   -i0 case-sensitive search\n");
 fprintf(stderr,"-k  treat pattern literally - no meta-characters\n");
 fprintf(stderr,"-l  output the names of files that contain a match\n");
-fprintf(stderr,"-n  print line numbers of matches  -q print buffer byte offsets\n");
+fprintf(stderr,"-n  print line numbers of matches          -q  print buffer byte offsets\n");
 fprintf(stderr,"-p  supersequence search                   -CP 850|437 set codepage\n");
-fprintf(stderr,"-r  recurse subdirectories (UNIX style)    -s silent\n");
+fprintf(stderr,"-r  recurse subdirectories (UNIX style)    -s  silent\n");
 fprintf(stderr,"-t  for use when delimiter is at the end of records\n");
 fprintf(stderr,"-v  output those records without matches   -V[012345V] version / verbose more\n");
 fprintf(stderr,"-w  pattern has to match as a word: \"win\" will not match \"wind\"\n");
-fprintf(stderr,"-u  unterdruecke record output             -x  pattern must match a whole line\n");
-fprintf(stderr,"-y  suppresses the prompt when used with -B best match option\n");
+fprintf(stderr,"-u  suppress record output                 -x  pattern must match a whole line\n");
+fprintf(stderr,"-y  suppress the prompt when used with -B best match option\n");
 fprintf(stderr,"@listfile  use the filenames in listfile                              <1>23456Q");
 
 userw;
@@ -149,11 +149,11 @@ userw;
 PAGE2:
 one_line_help();
 fprintf(stderr,"\nThe pattern MUST BE ENCLOSED in \"DOUBLE QUOTES\" if it contains one of the\n");
-fprintf(stderr,"following METASYMBOLS. Good practice is always to include it in double quotes.\n\n");
+fprintf(stderr,"following METASYMBOLS. Good practice is always to enclose it in double quotes.\n\n");
 
 fprintf(stderr,"METASYMBOLS:\n");
 fprintf(stderr,"\\z          turns off any special meaning of character z (\\# matches #)\n");
-fprintf(stderr,"^           begin-of-line symbol\n");
+fprintf(stderr,"^           beginning-of-line symbol\n");
 fprintf(stderr,"$           end-of-line symbol\n");
 fprintf(stderr,".           matches any single character (except newline)\n");
 fprintf(stderr,"#           matches any number > 0 of arbitrary characters\n");
@@ -229,7 +229,7 @@ if ((cpage=get_current_codepage()) != -1) fprintf(stderr,"is CP %d.\n\n",cpage);
 else fprintf(stderr,"could not be detected. AGREP will use CP850 by default.\n\n");
 
 fprintf(stderr,"   The codepage setting affects the uppercase-lowercase translation table\n");
-fprintf(stderr,"   built-in AGREP when you use one of the options -i, -ia or -i# .\n");
+fprintf(stderr,"   built into AGREP when you use one of the options -i, -ia or -i# .\n");
 fprintf(stderr,"   The translation table can be printed by using verbose option -V5.\n\n");
 
 fprintf(stderr,"The default verbose option is %d                                       123<4>56Q",VERBOSE);
