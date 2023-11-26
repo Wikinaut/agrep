@@ -229,7 +229,7 @@ if ((cpage=get_current_codepage()) != -1) fprintf(stderr,"is CP %d.\n\n",cpage);
 else fprintf(stderr,"could not be detected. AGREP will use CP850 by default.\n\n");
 
 fprintf(stderr,"   The codepage setting affects the uppercase-lowercase translation table\n");
-fprintf(stderr,"   built-in AGREP when you use one of the options -i, -ia or -i# .\n");
+fprintf(stderr,"   built into AGREP when you use one of the options -i, -ia or -i# .\n");
 fprintf(stderr,"   The translation table can be printed by using verbose option -V5.\n\n");
 
 fprintf(stderr,"The default verbose option is %d                                       123<4>56Q",VERBOSE);
