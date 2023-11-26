@@ -447,6 +447,7 @@ int fd, M, D;
 #endif	/*AGREP_POINTER*/
 }
 
+int
 fill_buf(fd, buf, record_size)
 int fd, record_size; 
 unsigned char *buf;

@@ -47,7 +47,7 @@ char	CP_MAPPING;			/* -i option = case(in)sensitive search ?
 unsigned char LUT[256];			/* THE LOOK-UP TABLE (filled in AGREP.C) */
 
 
-int get_current_codepage(VOID)
+int get_current_codepage(void)
 
 #ifdef __EMX__
 
