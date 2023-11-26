@@ -136,7 +136,7 @@ fprintf(stderr,"-k  treat pattern literally - no meta-characters\n");
 fprintf(stderr,"-l  output the names of files that contain a match\n");
 fprintf(stderr,"-n  print line numbers of matches          -q  print buffer byte offsets\n");
 fprintf(stderr,"-p  supersequence search                   -CP 850|437 set codepage\n");
-fprintf(stderr,"-r  recurse subdirectories (UNIX style)    -s silent\n");
+fprintf(stderr,"-r  recurse subdirectories (UNIX style)    -s  silent\n");
 fprintf(stderr,"-t  for use when delimiter is at the end of records\n");
 fprintf(stderr,"-v  output those records without matches   -V[012345V] version / verbose more\n");
 fprintf(stderr,"-w  pattern has to match as a word: \"win\" will not match \"wind\"\n");
