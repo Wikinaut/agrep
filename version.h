@@ -47,27 +47,4 @@
 
 #define AGREP_VERSION	"3.41.5/TG"
 
-#ifdef __DOS
-#define AGREP_OS	"DOS"
-#endif
-
-#ifdef __OS2
-#define AGREP_OS	"OS/2"
-#endif
-
-#ifdef __RSX
-#define AGREP_OS	"VPMI"
-#endif
-
-#ifdef _WIN32
-#define AGREP_OS	"WIN32"
-#endif
-
-#ifndef AGREP_OS
-#define AGREP_OS "NATIVE LINUX"
-#endif
-
-
-#define AGREP_DATE	__DATE__
-
-#define AGREP_VERSION_STRING "AGREP "AGREP_VERSION" for "AGREP_OS" compiled with GCC "__VERSION__" ("__DATE__" "__TIME__"). Manber/Wu/Gries et al."
+#define AGREP_VERSION_STRING "AGREP "AGREP_VERSION". Manber/Wu/Gries et al."
