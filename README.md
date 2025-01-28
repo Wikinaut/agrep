@@ -1,5 +1,8 @@
 <img src="https://raw.github.com/Wikinaut/agrep/master/resources/agrep.gif">
 
+# This project is unmaintained since many years. The source code is kept for historical and archive reasons. Use at your own risk, do not use in production environments.
+
+
 AGREP - an approximate GREP. 
 
 Fast searching files for a string or regular expression, with approximate matching capabilities and user-definable records. 
